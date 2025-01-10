@@ -11,7 +11,11 @@ export const ContactList = () => {
     return (
         <div className="container">
             <h1>Este es el contact list</h1>
-            <p>{store.user}</p>
+            {store.contacts.map((iterator) => 
+                <div className="card">
+                    {iterator.name}
+                </div>
+            )}
         </div>
     )
 }
