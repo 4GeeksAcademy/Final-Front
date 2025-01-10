@@ -13,14 +13,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			baseURLContact: "https://playground.4geeks.com/contact",
+			user: "alejandroquiles",
+			contacts: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
@@ -46,7 +48,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
+			},
+			getContact: async () => {
+				const uri = `${getStore().baseURLContact}/agendas/${getStore().user}`
+				const response = await fetch(uri)
+				if (!response.ok) {
+					console.log('error:', response.status, response.statusText)
+					return
+				}
+				const data = await response.json();
+				console.log (data)
+				setStore({ contacts: data.contacts })
+			},
 		}
 	};
 };
