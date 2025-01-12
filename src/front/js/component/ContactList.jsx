@@ -10,10 +10,10 @@ export const ContactList = () => {
 
     return (
         <div className="container">
-            <h1>Este es el contact list</h1>
-            {store.contacts.map((iterator) => 
+            <h1>Contact List</h1>
+            {store.contacts.map((item) => 
                 <div className="card">
-                    {iterator.name}
+                    {item.name}
                 </div>
             )}
         </div>
